@@ -5,22 +5,31 @@ import {
   generateReverseComplement,
 } from ".//dnaUtils";
 
+import { Button, Container } from 'react-bootstrap';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
 const DNAComplementApp = () => {
   const [dnaSequence, setDnaSequence] = useState("");
   const [result, setResult] = useState("");
-  const [error, setError] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
+  const [alerts, setAlerts] = useState([]); 
 
-  // returns true if input invalid
-  const validateInput = (sequence) => {
-    return !/^[ATCG]*$/.test(sequence.toUpperCase());
-  };
+
+    // Add alert to the list
+    const showAlert = (message, type) => {
+        const id = Date.now();
+        setAlerts((prev) => [...prev, { id, message, type }]);
+      };
+    
+      // Remove an alert
+      const dismissAlert = (id) => {
+        setAlerts((prev) => prev.filter(alert => alert.id !== id));
+      };
 
   const handleAction = (action) => {
-    setDnaSequence(dnaSequence.toUpperCase());
 
-    if (validateInput(dnaSequence)) {
-      setError("Invalid input! Only A, T, C, and G are allowed.");
+    if (!/^[ATCG]*$/.test(dnaSequence)) {
+      showAlert('Sequence must consist of A, T, C and G only!', 'danger');
       setResult("");
       return;
     }
@@ -46,33 +55,52 @@ const DNAComplementApp = () => {
     };
 
     return (
-      <div>
-        <label>Select an option: </label>
+        <div>
+        <label>What sequence are you looking for? </label>
+      <div class="dropdown">
         <select value={selectedOption} onChange={handleChange}>
-          <option value="">-- Select --</option>
+          <option value="">Select an Option</option>
           <option value="complement">Complement</option>
           <option value="reverse">Reverse</option>
           <option value="reversecomplement">Reverse Complement</option>
         </select>
-        <p>You selected: {selectedOption}</p>
+      </div>
       </div>
     );
   };
 
   return (
-    <div className="container">
+    <Container>
+        <h3 className="welcome-title">Welcome to your</h3>
       <h2 className="title">DNA Toolkit</h2>
       <Dropdown />
+
+      <div>
+  {alerts.map(alert => (
+    <div key={alert.id} className={`alert alert-${alert.type} alert-dismissible`} role="alert">
+      <div>{alert.message}</div>
+      <button
+        type="button"
+        className="btn-close"
+        onClick={() => dismissAlert(alert.id)}
+        aria-label="Close"
+      ></button>
+    </div>
+  ))}
+</div>
+
       <input
+        class = "mb-3"
         type="text"
         value={dnaSequence}
-        onChange={(e) => setDnaSequence(e.target.value)}
+        onChange={(e) => setDnaSequence(e.target.value.toUpperCase())}
         placeholder="Enter DNA sequence (A, T, C, G)"
       />
-      <button onClick={() => handleAction(selectedOption)}>Generate</button>
-      {error && <p className="error">{error}</p>}
+      <Button className="mt-5" variant="primary" id="generateButton" onClick={() => handleAction(selectedOption)}>Generate</Button>
+{/* 
+      {error && <p className="error">{error}</p>} */}
       {result && <p className="result">Output Strand: {result}</p>}
-    </div>
+    </Container>
   );
 };
 
