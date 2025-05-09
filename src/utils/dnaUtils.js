@@ -17,3 +17,5 @@ export function generateComplementaryStrand(sequence) {
     const complement = generateComplementaryStrand(sequence);
     return generateReverseStrand(complement);
   }
+
+  
