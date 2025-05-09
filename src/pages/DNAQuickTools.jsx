@@ -1,4 +1,4 @@
-import '../App.css';
+import "../App.css";
 import React, { useState } from "react";
 import {
   generateComplementaryStrand,
@@ -8,9 +8,9 @@ import {
 
 import Dropdown from "../components/Dropdown";
 import AlertList from "../components/AlertList";
+import SequenceInput from "../components/SequenceInput";
 
 import { Button, Container } from "react-bootstrap";
-
 
 const DNAQuickTools = () => {
   const [dnaSequence, setDnaSequence] = useState("");
@@ -56,24 +56,19 @@ const DNAQuickTools = () => {
   return (
     <Container className="container py-4">
       <h2 className="text-center mb-4 title">Quick Tools</h2>
-  
+
       <Dropdown
         selectedOption={selectedOption}
         onChange={(e) => setSelectedOption(e.target.value)}
       />
-  
+
       <AlertList alerts={alerts} onDismiss={dismissAlert} />
-  
-      <div className="mb-3">
-        <input
-          className="form-control form-control-lg"
-          type="text"
-          value={dnaSequence}
-          onChange={(e) => setDnaSequence(e.target.value.toUpperCase())}
-          placeholder="Enter DNA sequence (A, T, C, G)"
-        />
-      </div>
-  
+
+      <SequenceInput
+        value={dnaSequence}
+        onChange={(e) => setDnaSequence(e.target.value.toUpperCase())}
+      />
+
       <div className="d-grid gap-2">
         <Button
           variant="primary"
@@ -83,11 +78,10 @@ const DNAQuickTools = () => {
           Generate
         </Button>
       </div>
-  
+
       {result && <p className="mt-3 result">Output Strand: {result}</p>}
     </Container>
   );
-  
 };
 
 export default DNAQuickTools;
