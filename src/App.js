@@ -9,9 +9,12 @@ import "./App.css";
 const App = () => {
   return (
     <Router>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <nav className="navbar navbar-expand-lg mb-4">
         <div className="container-fluid d-flex justify-content-between align-items-center">
-          <h2 className="ms-3 mb-0 title">DNA Toolkit</h2>
+        <div className="d-flex mb-0">
+        <img src="/dna_logo.png" alt="Logo" width="50" height="50" />
+          <h2 className="mt-2 title">DNA Toolkit</h2>
+          </div>
 
           <div className="d-flex">
             <Link className="navbar-brand mx-4 hover-text" to="/">

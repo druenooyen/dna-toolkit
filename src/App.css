@@ -52,6 +52,7 @@ input {
 
 .navbar {
   border-radius: 5px;
+  background-color: rgb(255, 255, 255) !important;
 }
 
 .hover-text {
