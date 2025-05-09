@@ -8,13 +8,22 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 const App = () => {
   return (
     <Router>
-        <h3 className="text-left text-muted">Welcome to your</h3>
-        <h2 className="mb-4 title">DNA Toolkit</h2>
+      <div className="d-flex">
+        <h4 className="ms-3 welcome">Welcome to your</h4>
+        <h2 className="ms-3 title">DNA Toolkit</h2>
+      </div>
+
       <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
-        <div className="container">
-          <Link className="navbar-brand" to="/">Home</Link>
-          <Link className="navbar-brand" to="/quicktools">Strand Converter</Link>
-          <Link className="navbar-brand" to="/codonusage">Codon Usage</Link>
+        <div className="d-flex">
+          <Link className="navbar-brand mx-3" to="/">
+            Home
+          </Link>
+          <Link className="navbar-brand me-3" to="/quicktools">
+            Strand Converter
+          </Link>
+          <Link className="navbar-brand" to="/codonusage">
+            Codon Usage
+          </Link>
         </div>
       </nav>
 
@@ -25,7 +34,6 @@ const App = () => {
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;
-

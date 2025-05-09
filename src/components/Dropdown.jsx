@@ -2,7 +2,7 @@
 const Dropdown = ({ selectedOption, onChange }) => {
   return (
     <div>
-      <h2>What sequence are you looking for? </h2>
+      <h4 className="dropdown-title">What sequence are you looking for? </h4>
       <div className="dropdown">
         <select
           className="form-select form-select-lg mb-3"

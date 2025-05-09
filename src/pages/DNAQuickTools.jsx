@@ -9,6 +9,7 @@ import {
 import Dropdown from "../components/Dropdown";
 import AlertList from "../components/AlertList";
 import SequenceInput from "../components/SequenceInput";
+import CopyButton from "../components/CopyButton";
 
 import { Button, Container } from "react-bootstrap";
 
@@ -55,7 +56,7 @@ const DNAQuickTools = () => {
 
   return (
     <Container className="container py-4">
-      <h2 className="text-center mb-4 title">Quick Tools</h2>
+      <h2 className="text-center mb-4 section-title">Strand Converter</h2>
 
       <Dropdown
         selectedOption={selectedOption}
@@ -79,7 +80,15 @@ const DNAQuickTools = () => {
         </Button>
       </div>
 
-      {result && <p className="mt-3 result">Output Strand: {result}</p>}
+      {result && (
+        <p className="mt-3 result">
+          Output Strand: {result}
+          <p>
+            {" "}
+            <CopyButton textToCopy={result} />{" "}
+          </p>
+        </p>
+      )}
     </Container>
   );
 };
