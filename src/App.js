@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
-import DNAQuickTools from "./pages/DNAQuickTools";
+import StrandConverter from "./pages/StrandConverter";
 import CodonUsage from "./pages/CodonUsage";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
 
+
 const App = () => {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        onAuthStateChanged(auth, setUser);
+      }, []);
+
+      
   return (
+
+
     <Router>
       <nav className="navbar navbar-expand-lg mb-4">
         <div className="container-fluid d-flex justify-content-between align-items-center">
@@ -26,6 +40,9 @@ const App = () => {
             <Link className="navbar-brand hover-text" to="/codonusage">
               Codon Usage
             </Link>
+            <Link className="navbar-brand hover-text" to="/login">
+              Login
+            </Link>
           </div>
         </div>
       </nav>
@@ -33,8 +50,10 @@ const App = () => {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/quicktools" element={<DNAQuickTools />} />
+          <Route path="/quicktools" element={<StrandConverter user={user} />} />
           <Route path="/codonusage" element={<CodonUsage />} />
+          <Route path="/login" element={<Login onLogin={setUser} />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </div>
     </Router>

@@ -6,14 +6,17 @@ import {
   generateReverseComplement,
 } from "../utils/dnaUtils";
 
+
+
 import Dropdown from "../components/Dropdown";
 import AlertList from "../components/AlertList";
 import SequenceInput from "../components/SequenceInput";
 import CopyButton from "../components/CopyButton";
+import SaveButton from "../components/SaveButton";
 
 import { Button, Container } from "react-bootstrap";
 
-const DNAQuickTools = () => {
+const DNAQuickTools = ({ user }) => {
   const [dnaSequence, setDnaSequence] = useState("");
   const [result, setResult] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
@@ -84,8 +87,8 @@ const DNAQuickTools = () => {
         <p className="mt-3 result">
           Output Strand: {result}
           <p>
-            {" "}
-            <CopyButton textToCopy={result} />{" "}
+            <CopyButton textToCopy={result} />
+            <SaveButton user={user} sequence={result} />
           </p>
         </p>
       )}
