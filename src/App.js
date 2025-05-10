@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
+import { UserContext } from "./userContext";
 
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
       </nav>
 
       <div className="container">
+      <UserContext.Provider value={user}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/quicktools" element={<StrandConverter user={user} />} />
@@ -55,6 +57,7 @@ const App = () => {
           <Route path="/login" element={<Login onLogin={setUser} />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
+        </UserContext.Provider>
       </div>
     </Router>
   );

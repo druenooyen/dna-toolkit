@@ -1,10 +1,16 @@
 import "../App.css";
+import { useUser } from "../userContext";
 
 const Home = () => {
+    const user = useUser();
+
   return (
     <div>
       <div className="mx-2">
-        <h1 className="section-title">Welcome to your DNA Toolkit</h1>
+        <h1 className="section-title">Welcome to your DNA Toolkit
+        {user ? (
+        <h1>{user.email}</h1>) : <h1> </h1>}
+        </h1>
         <h2 className="fs-3">Your homebase for all genetics tools to support your workflows!</h2>
         <h2 className="fs-3">Select a tool from the navigation bar above to get started.</h2>
       </div>
