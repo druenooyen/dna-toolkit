@@ -3,6 +3,9 @@
 ## Project Description:
 This project was inspired by the need for a modern, centralized website that brings together a variety of tools for researchers working with DNA. Many existing DNA tool websites are outdated and lack data persistence capability. Drawing from my own experience in life science research, I recognized the value of a platform where users can log in, access essential tools in one place, and be able to save and return to important sequences and results. DNA Toolkit is designed to be a simple, user-friendly web application that supports researchers by streamlining their workflow and making DNA analysis more efficient.
 
+
+# CRA Breakdown
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
